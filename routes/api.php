@@ -4,6 +4,7 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ProductCategoryController;
 use App\Http\Controllers\API\TransactionController;
 use App\Http\Controllers\API\UserController;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
@@ -32,3 +33,4 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 
 Route::get('transactions', [TransactionController::class, 'all']);
+Route::get('checkout', [TransactionController::class, 'checkout']);
