@@ -64,7 +64,7 @@ class ProductController extends Controller
         }
 
         return ResponseFormatter::success(
-            $product->paginate(3),
+            $product->paginate($limit),
             'Data Produk Berhasil Diambil'
         );
     }
