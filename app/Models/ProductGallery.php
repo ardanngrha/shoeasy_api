@@ -19,6 +19,7 @@ class ProductGallery extends Model
     // return real url
     public function getUrlAttribute($url)
     {
-        return 'http://20.20.22.199/shoeasy_backend/public'. Storage::url($url);
+        // Your IPv4 Address
+        return 'http://192.168.0.101/shoeasy_backend/public'. Storage::url($url);
     }
 }
