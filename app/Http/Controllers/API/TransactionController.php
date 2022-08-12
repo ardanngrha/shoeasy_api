@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\TransactionItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection;
 
 class TransactionController extends Controller
 {
@@ -69,16 +70,22 @@ class TransactionController extends Controller
             'status' => $request->status,
         ]);
 
-        foreach ($request->items as $product)
-        {
-            TransactionItem::create([
-                'users_id' => Auth::id(),
-                'products_id' => $product['id'],
-                'transaction_id' => $transaction->id,
-                'quantity' => $product['quantity']
-            ]);
+        try {
+            //code...
+            foreach ($request->items as $product) {
+                TransactionItem::create([
+                    'users_id' => Auth::id(),
+                    'products_id' => $product['id'],
+                    'transactions_id' => $transaction->id,
+                    'quantity' => $product['quantity']
+                ]);
+            }
+
+            return ResponseFormatter::success($transaction->load('items.product'), 'Transaksi Berhasil');
+        } catch (\Throwable $th) {
+            return ResponseFormatter::success($th, 'Transaksi Berhasil');
         }
 
-        return ResponseFormatter::success($transaction->load('items.product'), 'Transaksi Berhasil');
+        // return ResponseFormatter::success(['tes' => 200], 'Transaksi Berhasil');
     }
 }

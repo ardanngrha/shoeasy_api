@@ -19,6 +19,6 @@ class ProductGallery extends Model
     // return real url
     public function getUrlAttribute($url)
     {
-        return 'http://10.0.2.2:8000'. Storage::url($url);
+        return 'http://20.20.22.199/shoeasy_backend/public'. Storage::url($url);
     }
 }
